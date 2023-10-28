@@ -42,4 +42,19 @@ solution => nodemon , dockerfile => npm run dev
 # DOCKER-COMPOSE: #
 ##################
 
-instead of writing  a long command contains all the proberties u want to specify, determine these proberties in docker-compose file and run a short simple command.
+instead of writing  a long command contains all the properties u want to specify, determine these proberties in docker-compose file and run a short simple command.
+
+- naming convention 
+projectName_serviceName => node_express_node-app
+
+- when u change the image content this doesn't reflect on the docker compose up 
+bec, it doesn't know that the existing image is stale and there is an update so, u must force rebuild the image
+
+docker-compose -d up --build
+
+
+dev, prod environment:
+----------------------
+
+
+
