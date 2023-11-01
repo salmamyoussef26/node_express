@@ -3,3 +3,4 @@ node_express
 .dockerignore
 .git
 .gitignore
+docker-compose*

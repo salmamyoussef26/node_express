@@ -35,7 +35,8 @@ solution => nodemon , dockerfile => npm run dev
  sudo docker run -v $(pwd):/app:ro -v /app/node_modules -p 3000:3000 -d --name node-app node-app-image
  ***************************************************
 
- - ENV PORT 3000: 3000 is the default value of PORT
+ - ENV PORT 3000: 3000 is the default value of PORT ???
+  
 ***********************************************
 
 ##################
@@ -48,13 +49,25 @@ instead of writing  a long command contains all the properties u want to specify
 projectName_serviceName => node_express_node-app
 
 - when u change the image content this doesn't reflect on the docker compose up 
-bec, it doesn't know that the existing image is stale and there is an update so, u must force rebuild the image
+bec, it just looks for an image with projectName_serviceName and when it finds it, it will not rebuild. it doesn't know that the existing image is stale and there is an update so, u must force rebuild the image.
 
 docker-compose -d up --build
 
 
 dev, prod environment:
 ----------------------
+docker-compose.yaml: just for the common properties both dev and prod share.
+
+we changed dockerfile cmd => node index.js for production.
+                             npm run dev for devolpement bec, it reflects the code changes which is not accpted for the prod.
+ - command in both dev and prod will override CMD in dockerfile.
+  
+* sudo docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up  -d --build
+* sudo docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml down  -v
+  
+* NODE_ENV an env var to be used in the dockerfile in conditional statement 
+  to decide which to docker-compose to be run instead of the specifying it in the command.
+
 
 
 
