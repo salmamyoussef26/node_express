@@ -4,10 +4,16 @@ services:
     build:
       context: .
       args: 
-        NODE_ENV: development
+        NODE_ENV: development    #to pass it to the arg node_env in dockerfile        
     volumes:
       - ./:/app
       - /app/node_modules
     environment:
       - NODE_ENV=development
-    command: ["npm", "run", "dev"]
+      - MONGO_USER=root
+      - MONGO_PASS=xxx
+    
+      
+    command: ["npm", "run", "dev"]   #ovveride cmd in dockerfile
+                                     # install dev dependencies 
+ 

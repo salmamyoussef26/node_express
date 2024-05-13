@@ -1,8 +1,22 @@
 version: "3"
 services:
   node-app:
-    build: .
+    build: .             # path of the image to be built = path of the dockerfile
     ports:
       - "7000:4000"
     environment:
       - PORT=4000
+    depends_on:
+      - mongo             #mongo will go up first then node-app
+  
+  mongo:
+    image: mongo
+    command: [--auth]
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=xxx
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:

@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args: 
-        NODE_ENV: production
+        NODE_ENV: production      #to pass it to the arg node_env in dockerfile
     environment:
-      - NODE_ENV=production
-    command: ["node", "index.js"]
+      - NODE_ENV=production   # to determine which enviroment these configs will run
+    command: ["node", "index.js"]      #ovveride cmd in dockerfile        

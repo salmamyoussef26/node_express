@@ -4,3 +4,4 @@ node_express
 .git
 .gitignore
 docker-compose*
+notes.md
